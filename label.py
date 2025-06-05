@@ -7,9 +7,9 @@ import os
 def split_page_into_tiles(
     pdf_path,
     output_path,
-    label_size_mm=(58, 40),
-    margins_mm=(10, 15, 10, 10),
-    spacing_mm=(2, 2),
+    label_size_mm=(75, 30),
+    margins_mm=(12, 12, 20, 20),
+    spacing_mm=(15, 0),
     rows=9,
     cols=2
 ):
@@ -78,8 +78,8 @@ class PDFLabelSplitterApp:
         tk.Label(self.root, text="Размер этикетки (мм):").grid(row=1, column=0, sticky="w")
         self.label_w = tk.Entry(self.root, width=10)
         self.label_h = tk.Entry(self.root, width=10)
-        self.label_w.insert(0, "58")
-        self.label_h.insert(0, "40")
+        self.label_w.insert(0, "75")
+        self.label_h.insert(0, "30")
         self.label_w.grid(row=1, column=1, sticky="w")
         self.label_h.grid(row=1, column=1)
 
@@ -98,16 +98,25 @@ class PDFLabelSplitterApp:
         self.margin_t = tk.Entry(self.root, width=5)
         self.margin_r = tk.Entry(self.root, width=5)
         self.margin_b = tk.Entry(self.root, width=5)
-        for i, e in enumerate([self.margin_l, self.margin_t, self.margin_r, self.margin_b]):
-            e.insert(0, "10" if i != 1 else "15")
-            e.grid(row=3, column=1, padx=(i * 60, 0))
+
+        # Устанавливаем значения по умолчанию
+        self.margin_l.insert(0, "12")  # лево
+        self.margin_t.insert(0, "12")  # верх
+        self.margin_r.insert(0, "20")  # право
+        self.margin_b.insert(0, "20")  # низ
+
+        # Размещаем поля ввода рядом друг с другом
+        self.margin_l.grid(row=3, column=1, padx=(0, 10))
+        self.margin_t.grid(row=3, column=1, padx=(60, 10))
+        self.margin_r.grid(row=3, column=1, padx=(120, 10))
+        self.margin_b.grid(row=3, column=1, padx=(180, 0))
 
         # Отступы между ячейками
-        tk.Label(self.root, text="Отступы между этикетками (мм):").grid(row=4, column=0, sticky="w")
+        tk.Label(self.root, text="Отступы между этикетками (гор., верт.) мм:").grid(row=4, column=0, sticky="w")
         self.spacing_x = tk.Entry(self.root, width=10)
         self.spacing_y = tk.Entry(self.root, width=10)
-        self.spacing_x.insert(0, "2")
-        self.spacing_y.insert(0, "2")
+        self.spacing_x.insert(0, "15")
+        self.spacing_y.insert(0, "0")
         self.spacing_x.grid(row=4, column=1, sticky="w")
         self.spacing_y.grid(row=4, column=1)
 

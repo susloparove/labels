@@ -3,9 +3,9 @@ import fitz
 def split_page_into_tiles(
     pdf_path,
     output_path,
-    label_size_mm=(90, 30),
-    margins_mm=(13, 12, 20, 20),  # left, top, right, bottom
-    spacing_mm=(0, 0),            # horizontal, vertical
+    label_size_mm=(75, 30),
+    margins_mm=(12, 12, 20, 20),  # left, top, right, bottom
+    spacing_mm=(15, 0),            # horizontal, vertical
     rows=9,
     cols=2
 ):
@@ -63,6 +63,6 @@ split_page_into_tiles(
     "output_labels.pdf",
     rows=9,
     cols=2,
-    margins_mm=(13, 12, 20, 20),   # поля в мм
+    margins_mm=(12, 12, 20, 20),   # поля в мм
     spacing_mm=(0, 0)              # небольшие отступы между этикетками
 )
